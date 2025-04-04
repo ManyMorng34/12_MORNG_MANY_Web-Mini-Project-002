@@ -1,10 +1,12 @@
-import React from 'react'
+import { getProfileServices } from "@/service/profile-services/profileService";
+import React from "react";
 
-export default function NavBar() {
+export default async function NavBar() {
+  const user = await getProfileServices();
+
   return (
     <div>
       <div className="flex items-center justify-between px-6 py-4 border-b border-blue-500 bg-white w-full">
-        {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span>Workspace</span>
           <svg
@@ -24,10 +26,7 @@ export default function NavBar() {
             HRD Design
           </span>
         </div>
-
-        {/* Right section */}
         <div className="flex items-center gap-4">
-          {/* Notification Icon */}
           <button className="text-gray-600 hover:text-black">
             <svg
               className="w-5 h-5"
@@ -43,21 +42,23 @@ export default function NavBar() {
               />
             </svg>
           </button>
-
-          {/* User Info */}
-          <div className="flex items-center gap-3">
-            <div className="text-right text-sm">
-              <div className="font-medium text-gray-800">Monster</div>
-              <div className="text-cyan-500 text-xs">
-                blackmonster@gmail.com
+          {user?.payload && (
+            <div className="flex items-center gap-3">
+              <div className="text-right text-sm">
+                <div className="font-medium text-gray-800">
+                  {user.payload.username}
+                </div>
+                <div className="text-cyan-500 text-xs">
+                  {user.payload.email}
+                </div>
               </div>
+              <img
+                src={user.payload.profile}
+                alt="user"
+                className="w-9 h-9 rounded-full border border-gray-200"
+              />
             </div>
-            <img
-              src="https://i.pravatar.cc/40"
-              alt="Avatar"
-              className="w-9 h-9 rounded-full border border-gray-200"
-            />
-          </div>
+          )}
         </div>
       </div>
     </div>

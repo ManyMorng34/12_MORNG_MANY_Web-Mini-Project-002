@@ -35,13 +35,6 @@ export default function PopUpWorkSpace() {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/10 backdrop-blur-none">
           <div className="bg-white rounded-2xl p-6 w-full max-w-sm shadow-xl relative">
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-4 text-gray-400 hover:text-black text-xl"
-            >
-              ✕
-            </button>
-
             <h2 className="text-lg font-bold mb-4 text-gray-800 uppercase">
               New Workspace
             </h2>

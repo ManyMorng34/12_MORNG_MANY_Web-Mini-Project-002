@@ -5,7 +5,7 @@ export const getAllWorkspace = async () => {
   console.log("header", headers);
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_AUTH_BASE_URL}/workspaces`,
-    { headers }
+    { headers, next: {tags: ["workspaces"]} }
   );
   const workspaces = await response.json();
   return workspaces;
